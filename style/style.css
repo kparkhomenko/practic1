@@ -1,0 +1,156 @@
+@font-face {
+    font-family: font;
+    src: url(PTSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: logo;
+    src: url(Bilbo-Regular.ttf);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #EEEEEE;
+}
+
+a {
+    text-decoration: none;
+    font-family: font;
+    font-size: 20px;
+    color: black;
+}
+
+header {
+    display: flex;
+}
+
+section {
+    display: flex;
+}
+
+h2 {
+    font-weight: normal;
+    font-family: font;
+    color: #666666;
+    font-size: 24px;
+}
+
+.container {
+    margin: 0 auto;
+    margin-left: 10%;
+    width: 1250px;
+    background-color: #EEEEEE;
+}
+
+.nav1 {
+    width: 1250px;
+    height: 15%;
+    background-color: #FFFF;
+    border-bottom: 0.5px solid black;
+    box-shadow: 1px 2px 4px;
+    display: flex;
+}
+
+.logo {
+    width: 210px;
+    border-right: 0.5px solid black;
+    margin: 25%;
+    font-family: logo;
+    font-weight: normal;
+}
+
+.find {
+    margin-top: 30%;
+    margin-left: 65%;
+    border-radius: 10px;
+    height: 30px;
+}
+
+.enter {
+    margin-top: 4.5%;
+    margin-left: 60%;
+}
+
+ul li {
+    margin-top: 10%;
+    list-style-type: none;
+    font-family: font;
+    font-size: 20px;
+}
+
+.catalogue {
+    color: #666666;
+}
+
+.nav2 {
+    margin-left: 5%;
+    margin-top: 5%;
+    border-right: 0.5px solid black;
+    width: 205px;
+}
+
+.add {
+    margin: 5%;
+    margin-top: 6%;
+}
+
+.books {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-left: 25%;
+    width: 1000px;
+}
+
+.name {
+    font-family: font;
+    font-size: 16px;
+    margin-top: 4%;
+    color: black;
+}
+
+.other {
+    font-family: font;
+    margin-top: 4%;
+    color: #666666;
+}
+
+.other1 {
+    text-align: center;
+    font-size: 16px;
+    font-family: font;
+    margin-right: 38%;
+}
+
+.book {
+    margin-top: 40%;
+}
+
+.delete {
+    font-family: font;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.books1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 1150px;
+    margin-left: 12%;
+}
+
+.other2 {
+    text-align: center;
+    font-size: 16px;
+    font-family: font;
+    margin-right: 45%;
+}
+
+.books a {
+    margin-left: 13%;
+}
+

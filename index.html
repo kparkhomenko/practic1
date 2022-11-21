@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=stylesheet href="style/style.css">
+    <title>DoLePa</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+        <div class="nav1">
+            <div>
+            <h1 class="logo">DoLePa</h1>
+            </div>
+            <div>
+            <input class="find">
+            </div>
+            <div class="enter">
+            <a href="function/login.php">Войти</a>
+            </div>
+        </div>
+        </header>
+    <section>
+        <div class="books1">
+        <?php 
+            $connect = mysqli_connect('localhost', 'root','', 'bookshop');
+
+            if (isset($_GET['del'])) {
+                $data = $_GET['del'];
+                $delete1 = "DELETE FROM `books` WHERE `bookId`=$data";
+                mysqli_query($connect, $delete1);
+            }
+            $book = "SELECT `bookId`, `bookName`, `cover`, `year` FROM `books`";
+            $author = "SELECT `AuthorID`, `AuthorName` FROM `author`";
+            $genre = "SELECT `genreID`, `NameGenre` FROM `genre`";
+            $bookdata = mysqli_query($connect,$book);
+            $authordata = mysqli_query($connect,$author);
+            $genredata = mysqli_query($connect, $genre);
+            while($bookoutput = mysqli_fetch_assoc($bookdata) and $authoroutput = mysqli_fetch_assoc($authordata) and $genreoutput = mysqli_fetch_assoc($genredata) ){ ?>
+            <div class="book">
+            <p class="other1"><?= $genreoutput['NameGenre']?></p>
+            <img src="../img/covers/<?= $bookoutput['cover'] ?>" width="150" height="250">
+            <h2 class="name"><?= $bookoutput['bookName']?></h2>
+            <p class="other"><?= $authoroutput['AuthorName']?></p>
+            <p class="other"><?= $bookoutput['year']?></p>
+            <a class="delete" href="?del=<?= $bookoutput['bookId']?>">Удалить</a>
+            </div>
+        <?php } ?>
+        </div>
+    </section>
+    </div>
+</body>
+<script src="script/script.js"></script>
+</html>
