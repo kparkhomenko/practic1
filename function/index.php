@@ -16,10 +16,7 @@
             <div>
             <h1 class="logo">DoLePa</h1>
             </div>
-            <div>
-            <input class="find">
-            </div>
-            <div class="enter">
+            <div class="enter1">
             <h2><?php echo $_SESSION['user']['login']; ?></h2> 
             <a class="out" href="/function/logout.php">Выйти</a>
             </div>
@@ -30,26 +27,26 @@
         <ul>
             <li class="catalogue">НАВИГАЦИЯ</li>
             <li><a href="">Добавить</a></li>
+            <li><a href="">Каталог</a></li>
             <li><a href="">Обновить</a></li>
-            <li><a href="">Удалить</a></li>
         </ul>
     </div>
     <div class="add">
     <h2>Добавить</h2>
     <form class="form_sign_up" action="upload.php" method="POST" enctype="multipart/form-data">
-        <p>Название</p>
-        <input type="text" class="bookname" name="bookname">
-        <p>Изображение обложки</p>
-        <input type="file" name="image" id="image">
-        <p>Краткое описание</p>
-        <textarea name="description" class="desc"></textarea>
-        <p>Год выпуска</p>
-        <input type="text" class="year" name="year">
-        <p>Автор</p>
-        <input type="text" class="authorname" name="authorname">
-        <p>Жанр книги</p>
-        <input type="text"  class="genre" name="genre">
-        <button class="add" id="addBut" type="submit">Отправить</button>        
+        <p class="addheader">Название</p>
+        <input type="text" class="addinput" name="bookname">
+        <p class="addheader">Изображение обложки</p>
+        <input type="file" name="image" class="addimage" id="image">
+        <p class="addheader">Краткое описание</p>
+        <textarea name="description" class="addinput"></textarea>
+        <p class="addheader">Год выпуска</p>
+        <input type="text" class="addinput" name="year">
+        <p class="addheader">Автор</p>
+        <input type="text" class="addinput" name="authorname">
+        <p class="addheader">Жанр книги</p>
+        <input type="text"  class="addinput" name="genre"><br>
+        <button class="addbutton" id="addBut" type="submit">Отправить</button>        
     </form>
     </div>
     </section>
@@ -57,13 +54,7 @@
     <div class="books">
     <?php 
         $connect = mysqli_connect('localhost', 'root','', 'bookshop');
-
-        if (isset($_GET['del'])) {
-            $data = $_GET['del'];
-            $delete1 = "DELETE FROM `books` WHERE `bookId`=$data";
-            mysqli_query($connect, $delete1);
-        }
-        $book = "SELECT `bookId`, `bookName`, `cover`, `year` FROM `books`";
+        $book = "SELECT * FROM `books`";
         $author = "SELECT `AuthorID`, `AuthorName` FROM `author`";
         $genre = "SELECT `genreID`, `NameGenre` FROM `genre`";
         $bookdata = mysqli_query($connect,$book);
@@ -76,10 +67,44 @@
         <h2 class="name"><?= $bookoutput['bookName']?></h2>
         <p class="other"><?= $authoroutput['AuthorName']?></p>
         <p class="other"><?= $bookoutput['year']?></p>
-        <a class="delete" href="?del=<?= $bookoutput['bookId']?>">Удалить</a>
+        <a class="delete" href="delete.php?deleteBookData=<?= $bookoutput['bookId']?>&deleteAuthorData=<?= $authoroutput['AuthorID']?>&deleteGenreData=<?= $genreoutput['genreID']?>">Удалить</a>
+        <a class="delete" href="?updateBookData=<?= $bookoutput['bookId']?>&updateAuthorData=<?= $authoroutput['AuthorID']?>&updateGenreData=<?= $genreoutput['genreID']?>">Обновить</a>
         </div>
     <?php } ?>
     </div>
+    </section>
+    <section>
+        <div class="update">
+        <?php 
+            $bookUpdateID = $_GET['updateBookData'];
+            $bookUpdate = mysqli_query($connect, "SELECT * FROM `books` WHERE `bookId` = '$bookUpdateID'");
+            $bookUpdate = mysqli_fetch_assoc($bookUpdate);
+            $authorUpdateID = $_GET['updateAuthorData'];
+            $authorUpdate = mysqli_query($connect, "SELECT * FROM `author` WHERE `AuthorID` = '$authorUpdateID'");
+            $authorUpdate = mysqli_fetch_assoc($authorUpdate);
+            $genreUpdateID = $_GET['updateGenreData'];
+            $genreUpdate = mysqli_query($connect, "SELECT * FROM `genre` WHERE `genreID` = '$genreUpdateID'");
+            $genreUpdate = mysqli_fetch_assoc($genreUpdate);
+
+        ?>
+        <h2>Обновить</h2>
+        <form action="update.php" method="POST" enctype="multipart/form-data" class="form">
+        <input type="hidden" name="id" value="<?=$bookUpdate['bookId'] ?>">
+        <p class="addheader">Название</p>
+        <input type="text" class="addinput" name="bookName" value="<?= $bookUpdate['bookName'] ?>">
+        <p class="addheader">Изображение обложки</p>
+        <input type="file" name="image" class="addimage" id="image" value="<?= $bookUpdate['cover']?>">
+        <p class="addheader">Краткое описание</p>
+        <textarea name="description" class="addinput"><?= $bookUpdate['description'] ?></textarea>
+        <p class="addheader">Год выпуска</p>
+        <input type="text"  class="addinput" name="year" value="<?= $bookUpdate['year'] ?>">
+        <p class="addheader">Автор</p>
+        <input type="text" class="addinput" name="author" value="<?= $authorUpdate['AuthorName']?>">
+        <p class="addheader">Жанр книги</p>
+        <input type="text"  class="addinput" name="genre" value="<?= $genreUpdate['NameGenre'] ?>"><br>
+        <button class="updatebutton" id="addBut" type="submit">Обновить</button>     
+        </form>
+        </div>
     </section>
 </div>
 </body>

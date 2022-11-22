@@ -76,6 +76,13 @@ h2 {
     margin-left: 60%;
 }
 
+.enter1 {
+    margin-top: 3%;
+    margin-left: 65%;
+    width: 200px;
+    text-align: center;
+}
+
 ul li {
     margin-top: 10%;
     list-style-type: none;
@@ -92,6 +99,7 @@ ul li {
     margin-top: 5%;
     border-right: 0.5px solid black;
     width: 205px;
+    height: 205px;
 }
 
 .add {
@@ -150,7 +158,47 @@ ul li {
     margin-right: 45%;
 }
 
-.books a {
-    margin-left: 13%;
+.addheader {
+    font-family: font;
+    margin-top: 5%;
+    margin-bottom: 4%;
 }
+
+.addinput {
+    font-family: font;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 25px;
+    font-size: 15px;
+}
+
+.addbutton {
+    font-family: font;
+    font-size: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px 52px 5px 52px;
+    margin-top: 10%;
+    text-align: center;
+    background-color: white;
+}
+
+.updatebutton {
+    font-family: font;
+    font-size: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px 52px 5px 52px;
+    margin-top: 10%;
+    text-align: center;
+    background-color: white;
+}
+
+.update {
+    margin-top: 15%;
+    margin-left: 25%;
+}
+
+
+
 
