@@ -15,10 +15,8 @@
             <div>
             <h1 class="logo">DoLePa</h1>
             </div>
-            <div>
-            <form action="result.php" method="post">
-            <input type="text" class="find" name="search" placeholder="Что вы ищите?"><input type="submit" name="submit" class="searchsubmit">
-            </form>
+            <div class="search">
+            <input type="text" class="find" id="search" placeholder="Что вы ищите?">
             </div>
             <div class="enter">
             <a href="function/login.php">Войти</a>
@@ -26,7 +24,19 @@
         </div>
         </header>
     <section>
-        <div class="books1">
+        <div class="nav3">
+        <nav>
+        <ul>
+            <li class="catalogue">КАТАЛОГ</li>
+            <li data-f="all">Все книги</li>
+            <li data-f="fantasy">Фэнтези</li>
+            <li data-f="adventure">Приключения</li>
+            <li data-f="roman">Романы</li>
+            <li data-f="russiaClassic">Русская классика</li>
+        </ul>
+        </nav>
+        </div>
+        <div class="books2">
         <?php 
             $connect = mysqli_connect('localhost', 'root', '', 'bookshop');
             $book = "SELECT `bookId`, `bookName`, `cover`, `year` FROM `books`";
@@ -35,17 +45,49 @@
             $bookdata = mysqli_query($connect,$book);
             $authordata = mysqli_query($connect,$author);
             $genredata = mysqli_query($connect, $genre);
-            while($bookoutput = mysqli_fetch_assoc($bookdata) and $authoroutput = mysqli_fetch_assoc($authordata) and $genreoutput = mysqli_fetch_assoc($genredata) ){ ?>
-            <div class="book">
-            <p class="other2"><?= $genreoutput['NameGenre']?></p>
+            while($bookoutput = mysqli_fetch_assoc($bookdata) and $authoroutput = mysqli_fetch_assoc($authordata) and $genreoutput = mysqli_fetch_assoc($genredata) ){ 
+            if($genreoutput['NameGenre'] == "Фэнтези"){
+            ?>
+            <div class="book fantasy">
+            <p class="other3"><?= $genreoutput['NameGenre']?></p>
             <img src="../img/covers/<?= $bookoutput['cover'] ?>" width="150" height="250">
             <h2 class="name"><?= $bookoutput['bookName']?></h2>
             <p class="other"><?= $authoroutput['AuthorName']?></p>
             <p class="other"><?= $bookoutput['year']?></p>
             </div>
-        <?php } ?>
+            <?php 
+            } elseif($genreoutput['NameGenre'] == "Приключения"){
+            ?>
+            <div class="book adventure">
+            <p class="other3"><?= $genreoutput['NameGenre']?></p>
+            <img src="../img/covers/<?= $bookoutput['cover'] ?>" width="150" height="250">
+            <h2 class="name"><?= $bookoutput['bookName']?></h2>
+            <p class="other"><?= $authoroutput['AuthorName']?></p>
+            <p class="other"><?= $bookoutput['year']?></p>
+            </div>
+            <?php 
+            } elseif($genreoutput['NameGenre'] == "Роман"){
+            ?>
+            <div class="book roman">
+            <p class="other3"><?= $genreoutput['NameGenre']?></p>
+            <img src="../img/covers/<?= $bookoutput['cover'] ?>" width="150" height="250">
+            <h2 class="name"><?= $bookoutput['bookName']?></h2>
+            <p class="other"><?= $authoroutput['AuthorName']?></p>
+            <p class="other"><?= $bookoutput['year']?></p>
+            </div>
+            <?php 
+            } elseif($genreoutput['NameGenre'] == "Русская классика"){
+            ?>
+            <div class="book russiaClassic">
+            <p class="other3"><?= $genreoutput['NameGenre']?></p>
+            <img src="../img/covers/<?= $bookoutput['cover'] ?>" width="150" height="250">
+            <h2 class="name"><?= $bookoutput['bookName']?></h2>
+            <p class="other"><?= $authoroutput['AuthorName']?></p>
+            <p class="other"><?= $bookoutput['year']?></p>
+            </div>
+        <?php } } ?>
         </div>
     </section>
 </body>
-<script src="script/script.js"></script>
+<script src="script/sort.js"></script>
 </html>

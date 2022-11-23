@@ -25,6 +25,10 @@ a {
     color: black;
 }
 
+ul li {
+    cursor: pointer;
+}
+
 header {
     display: flex;
 }
@@ -200,19 +204,52 @@ ul li {
 }
 
 
-.searchsubmit {
-    margin-left: 85%;
-}
-
-
 .enter2 { 
     margin-top: 5%;
     margin-left: 55%;
     width: 500px;
 }
 
-.entersearch {
-    margin-left: 20%;
+.other3 {
+    text-align: center;
+    font-size: 16px;
+    font-family: font;
+    margin-right: 35%;
+}
+
+.nav3 {
+    margin-left: 5%;
+    margin-top: 5%;
+    border-right: 0.5px solid black;
+    width: 255px;
+    height: 270px;
 }
 
 
+.books2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 1150px;
+    margin-left: 8%;
+}
+
+.hide {
+    opacity: 1;
+    animation-name: hidee;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+}
+
+@keyframes hidee {
+    to {
+        opacity: 0;
+        min-height: 0;
+        min-width: 0;
+        border: 0;
+    }
+}
+
+.search {
+    margin-left: 2%;
+    margin-top: 0.5%;
+}

@@ -26,12 +26,13 @@
     <div class="nav2">
         <ul>
             <li class="catalogue">НАВИГАЦИЯ</li>
-            <li><a href="">Добавить</a></li>
-            <li><a href="">Каталог</a></li>
-            <li><a href="">Обновить</a></li>
+            <li><a href="#side1">Добавить</a></li>
+            <li><a href="#side2">Каталог</a></li>
+            <li><a href="#side3">Обновить</a></li>
         </ul>
     </div>
     <div class="add">
+    <a name="side1"></a>
     <h2>Добавить</h2>
     <form class="form_sign_up" action="upload.php" method="POST" enctype="multipart/form-data">
         <p class="addheader">Название</p>
@@ -51,6 +52,7 @@
     </div>
     </section>
     <section>
+    <a name="side2"></a>
     <div class="books">
     <?php 
         $connect = mysqli_connect('localhost', 'root','', 'bookshop');
@@ -87,6 +89,7 @@
             $genreUpdate = mysqli_fetch_assoc($genreUpdate);
 
         ?>
+        <a name="side3"></a>
         <h2>Обновить</h2>
         <form action="update.php" method="POST" enctype="multipart/form-data" class="form">
         <input type="hidden" name="id" value="<?=$bookUpdate['bookId'] ?>">
