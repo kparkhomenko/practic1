@@ -16,7 +16,9 @@
             <h1 class="logo">DoLePa</h1>
             </div>
             <div>
-            <input type="search" class="find" id="live_search" autocomplete="off">
+            <form action="result.php" method="post">
+            <input type="text" class="find" name="search" placeholder="Что вы ищите?"><input type="submit" name="submit" class="searchsubmit">
+            </form>
             </div>
             <div class="enter">
             <a href="function/login.php">Войти</a>
@@ -26,13 +28,7 @@
     <section>
         <div class="books1">
         <?php 
-            $connect = mysqli_connect('localhost', 'root','', 'bookshop');
-
-            if (isset($_GET['del'])) {
-                $data = $_GET['del'];
-                $delete1 = "DELETE FROM `books` WHERE `bookId`=$data";
-                mysqli_query($connect, $delete1);
-            }
+            $connect = mysqli_connect('localhost', 'root', '', 'bookshop');
             $book = "SELECT `bookId`, `bookName`, `cover`, `year` FROM `books`";
             $author = "SELECT `AuthorID`, `AuthorName` FROM `author`";
             $genre = "SELECT `genreID`, `NameGenre` FROM `genre`";
@@ -50,39 +46,6 @@
         <?php } ?>
         </div>
     </section>
-    <div id="searchresult"></div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-
-            $("#live_search").keyup(function() {
-
-                var input = $(this).val();
-                //alert(input); 
-
-                if (input != "") {
-                    $("#searchresult").css("display", "block");
-                    $.ajax({
-
-                        url: "function/finder.php",
-                        method: "POST",
-                        data: {
-                            input: input
-                        },
-
-                        success: function(data) {
-                            $("#searchresult").html(data);
-                        }
-                    });
-
-
-                } else {
-
-                    $("#searchresult").css("display", "none");
-                }
-            });
-        });
-    </script>
-    </div>
 </body>
 <script src="script/script.js"></script>
 </html>

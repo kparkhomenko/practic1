@@ -72,8 +72,8 @@ h2 {
 }
 
 .enter {
-    margin-top: 4.5%;
-    margin-left: 60%;
+    margin-top: 5%;
+    margin-left: 50%;
 }
 
 .enter1 {
@@ -200,5 +200,19 @@ ul li {
 }
 
 
+.searchsubmit {
+    margin-left: 85%;
+}
+
+
+.enter2 { 
+    margin-top: 5%;
+    margin-left: 55%;
+    width: 500px;
+}
+
+.entersearch {
+    margin-left: 20%;
+}
 
 
