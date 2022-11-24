@@ -253,3 +253,62 @@ ul li {
     margin-left: 2%;
     margin-top: 0.5%;
 }
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 900px;
+    }
+
+    .logo {
+    width: 150px;
+    border-right: 0.5px solid black;
+    margin: 25%;
+    font-family: logo;
+    font-weight: normal;
+    }
+
+    .nav3 {
+    margin-left: 5%;
+    margin-top: 5%;
+    border-right: 0.5px solid black;
+    width: 255px;
+    height: 220px;
+    }
+
+    .books2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 1150px;
+    margin-left: 5%;
+    }
+
+    ul li {
+    margin-top: 10%;
+    list-style-type: none;
+    font-family: font;
+    font-size: 16px;
+    }
+
+    .other3 {
+        margin-right: 30%;
+    }
+
+    .books {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 1150px;
+    margin-left: 5%;
+    }
+
+    .other1 {
+        margin-right: 50%;
+    }
+
+    .add {
+        display: inline;
+    }
+
+    .nav2 {
+        width: 150px;
+    }
+}
