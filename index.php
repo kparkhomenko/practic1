@@ -39,50 +39,46 @@
         <div class="books2">
         <?php 
             $connect = mysqli_connect('localhost', 'root', '', 'bookshop');
-            $book = "SELECT `bookId`, `bookName`, `cover`, `year` FROM `books`";
-            $author = "SELECT `AuthorID`, `AuthorName` FROM `author`";
-            $genre = "SELECT `genreID`, `NameGenre` FROM `genre`";
+            $book = "SELECT `bookid`.`id` AS 'id', `books`.`bookName` AS 'bookName', `author`.`AuthorName` AS 'AuthorName', `books`.`cover` AS 'cover', `books`.`description` AS 'description', `books`.`year` AS 'year', `books`.`NameGenre` AS 'NameGenre' FROM `bookid` LEFT JOIN `author` ON (`author`.`AuthorID` = `bookid`.`idAuthor`) LEFT JOIN `books` ON (`books`.`bookId` = `bookid`.`bookID`);";
             $bookdata = mysqli_query($connect,$book);
-            $authordata = mysqli_query($connect,$author);
-            $genredata = mysqli_query($connect, $genre);
-            while($bookoutput = mysqli_fetch_assoc($bookdata) and $authoroutput = mysqli_fetch_assoc($authordata) and $genreoutput = mysqli_fetch_assoc($genredata) ){ 
-            if($genreoutput['NameGenre'] == "Фэнтези"){
+            while($bookoutput = mysqli_fetch_assoc($bookdata)){
+            if($bookoutput['NameGenre'] == "Фэнтези"){
             ?>
             <div class="book fantasy">
-            <p class="other3"><?= $genreoutput['NameGenre']?></p>
+            <p class="other3"><?= $bookoutput['NameGenre']?></p>
             <img src="../img/covers/<?= $bookoutput['cover'] ?>" width="150" height="250">
             <h2 class="name"><?= $bookoutput['bookName']?></h2>
-            <p class="other"><?= $authoroutput['AuthorName']?></p>
+            <p class="other"><?= $bookoutput['AuthorName']?></p>
             <p class="other"><?= $bookoutput['year']?></p>
             </div>
             <?php 
-            } elseif($genreoutput['NameGenre'] == "Приключения"){
+            } elseif($bookoutput['NameGenre'] == "Приключения"){
             ?>
             <div class="book adventure">
-            <p class="other3"><?= $genreoutput['NameGenre']?></p>
+            <p class="other3"><?= $bookoutput['NameGenre']?></p>
             <img src="../img/covers/<?= $bookoutput['cover'] ?>" width="150" height="250">
             <h2 class="name"><?= $bookoutput['bookName']?></h2>
-            <p class="other"><?= $authoroutput['AuthorName']?></p>
+            <p class="other"><?= $bookoutput['AuthorName']?></p>
             <p class="other"><?= $bookoutput['year']?></p>
             </div>
             <?php 
-            } elseif($genreoutput['NameGenre'] == "Роман"){
+            } elseif($bookoutput['NameGenre'] == "Роман"){
             ?>
             <div class="book roman">
-            <p class="other3"><?= $genreoutput['NameGenre']?></p>
+            <p class="other3"><?= $bookoutput['NameGenre']?></p>
             <img src="../img/covers/<?= $bookoutput['cover'] ?>" width="150" height="250">
             <h2 class="name"><?= $bookoutput['bookName']?></h2>
-            <p class="other"><?= $authoroutput['AuthorName']?></p>
+            <p class="other"><?= $bookoutput['AuthorName']?></p>
             <p class="other"><?= $bookoutput['year']?></p>
             </div>
             <?php 
-            } elseif($genreoutput['NameGenre'] == "Русская классика"){
+            } elseif($bookoutput['NameGenre'] == "Русская классика"){
             ?>
             <div class="book russiaClassic">
-            <p class="other3"><?= $genreoutput['NameGenre']?></p>
+            <p class="other3"><?= $bookoutput['NameGenre']?></p>
             <img src="../img/covers/<?= $bookoutput['cover'] ?>" width="150" height="250">
             <h2 class="name"><?= $bookoutput['bookName']?></h2>
-            <p class="other"><?= $authoroutput['AuthorName']?></p>
+            <p class="other"><?= $bookoutput['AuthorName']?></p>
             <p class="other"><?= $bookoutput['year']?></p>
             </div>
         <?php } } ?>

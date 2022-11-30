@@ -56,21 +56,19 @@
     <div class="books">
     <?php 
         $connect = mysqli_connect('localhost', 'root','', 'bookshop');
-        $book = "SELECT * FROM `books`";
-        $author = "SELECT `AuthorID`, `AuthorName` FROM `author`";
-        $genre = "SELECT `genreID`, `NameGenre` FROM `genre`";
+        $book = "SELECT `bookid`.`id` AS 'id', `books`.`bookName` AS 'bookName', `author`.`AuthorName` AS 'AuthorName', `books`.`cover` AS 'cover', `books`.`description` AS 'description', `books`.`year` AS 'year', `books`.`NameGenre` AS 'NameGenre' FROM `bookid` LEFT JOIN `author` ON (`author`.`AuthorID` = `bookid`.`idAuthor`) LEFT JOIN `books` ON (`books`.`bookId` = `bookid`.`bookID`);";
+
         $bookdata = mysqli_query($connect,$book);
-        $authordata = mysqli_query($connect,$author);
-        $genredata = mysqli_query($connect, $genre);
-        while($bookoutput = mysqli_fetch_assoc($bookdata) and $authoroutput = mysqli_fetch_assoc($authordata) and $genreoutput = mysqli_fetch_assoc($genredata) ){ ?>
+
+        while($bookoutput = mysqli_fetch_assoc($bookdata)){ ?>
         <div class="book">
-        <p class="other1"><?= $genreoutput['NameGenre']?></p>
+        <p class="other1"><?= $bookoutput['NameGenre']?></p>
         <img src="../img/covers/<?= $bookoutput['cover'] ?>" width="150" height="250">
         <h2 class="name"><?= $bookoutput['bookName']?></h2>
-        <p class="other"><?= $authoroutput['AuthorName']?></p>
+        <p class="other"><?= $bookoutput['AuthorName']?></p>
         <p class="other"><?= $bookoutput['year']?></p>
-        <a class="delete" href="delete.php?deleteBookData=<?= $bookoutput['bookId']?>&deleteAuthorData=<?= $authoroutput['AuthorID']?>&deleteGenreData=<?= $genreoutput['genreID']?>">Удалить</a>
-        <a class="delete" href="?updateBookData=<?= $bookoutput['bookId']?>&updateAuthorData=<?= $authoroutput['AuthorID']?>&updateGenreData=<?= $genreoutput['genreID']?>">Обновить</a>
+        <a class="delete" href="delete.php?deleteBookData=<?= $bookoutput['bookId']?>">Удалить</a>
+        <a class="delete" href="?updateBookData=<?= $bookoutput['bookId']?>">Обновить</a>
         </div>
     <?php } ?>
     </div>
@@ -84,9 +82,6 @@
             $authorUpdateID = $_GET['updateAuthorData'];
             $authorUpdate = mysqli_query($connect, "SELECT * FROM `author` WHERE `AuthorID` = '$authorUpdateID'");
             $authorUpdate = mysqli_fetch_assoc($authorUpdate);
-            $genreUpdateID = $_GET['updateGenreData'];
-            $genreUpdate = mysqli_query($connect, "SELECT * FROM `genre` WHERE `genreID` = '$genreUpdateID'");
-            $genreUpdate = mysqli_fetch_assoc($genreUpdate);
 
         ?>
         <a name="side3"></a>
@@ -104,7 +99,7 @@
         <p class="addheader">Автор</p>
         <input type="text" class="addinput" name="author" value="<?= $authorUpdate['AuthorName']?>">
         <p class="addheader">Жанр книги</p>
-        <input type="text"  class="addinput" name="genre" value="<?= $genreUpdate['NameGenre'] ?>"><br>
+        <input type="text"  class="addinput" name="genre" value="<?= $bookUpdate['NameGenre'] ?>"><br>
         <button class="updatebutton" id="addBut" type="submit">Обновить</button>     
         </form>
         </div>
