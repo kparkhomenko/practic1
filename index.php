@@ -50,6 +50,9 @@
             <h2 class="name"><?= $bookoutput['bookName']?></h2>
             <p class="other"><?= $bookoutput['AuthorName']?></p>
             <p class="other"><?= $bookoutput['year']?></p>
+            <div class="description">
+                <p><?= $bookoutput['description'] ?></p>
+            </div>
             </div>
             <?php 
             } elseif($bookoutput['NameGenre'] == "Приключения"){
@@ -60,6 +63,9 @@
             <h2 class="name"><?= $bookoutput['bookName']?></h2>
             <p class="other"><?= $bookoutput['AuthorName']?></p>
             <p class="other"><?= $bookoutput['year']?></p>
+            <div class="description">
+                <p><?= $bookoutput['description'] ?></p>
+            </div>
             </div>
             <?php 
             } elseif($bookoutput['NameGenre'] == "Роман"){
@@ -70,6 +76,10 @@
             <h2 class="name"><?= $bookoutput['bookName']?></h2>
             <p class="other"><?= $bookoutput['AuthorName']?></p>
             <p class="other"><?= $bookoutput['year']?></p>
+            <div class="description">
+                <p><?= $bookoutput['description'] ?></p>
+            </div>
+
             </div>
             <?php 
             } elseif($bookoutput['NameGenre'] == "Русская классика"){
@@ -80,6 +90,10 @@
             <h2 class="name"><?= $bookoutput['bookName']?></h2>
             <p class="other"><?= $bookoutput['AuthorName']?></p>
             <p class="other"><?= $bookoutput['year']?></p>
+            <div class="description">
+                <p><?= $bookoutput['description'] ?></p>
+            </div>
+
             </div>
         <?php } } ?>
         </div>

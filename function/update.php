@@ -13,5 +13,5 @@ $desc = $_POST['description'];
 $year = $_POST['year'];
 
 mysqli_query($connect, "UPDATE `author` SET `AuthorName` = '$author' WHERE `author`.`AuthorID` = $id");
-mysqli_query($connect, "UPDATE `books` SET `bookName` = '$name', `cover` = '$filename', `description` = '$desc', `year` = '$year', `NameGenre` = 'genre' WHERE `books`.`bookId` = $id");
+mysqli_query($connect, "UPDATE `books` SET `bookName` = '$name', `cover` = '$filename', `description` = '$desc', `year` = '$year', `NameGenre` = '$genre' WHERE `books`.`bookId` = $id");
 header("Location: ../function/index.php");
